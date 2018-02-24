@@ -5,7 +5,7 @@ Selenium Project using Page Object Model
 • TestNG
 • Log4j
 • Selenium WebDriver
-• Apache POI
+• Dependences 
 
 
 

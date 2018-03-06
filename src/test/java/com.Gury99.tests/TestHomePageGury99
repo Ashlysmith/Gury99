@@ -1,1 +1,122 @@
 
+package com.guru99.tests;
+
+import java.net.MalformedURLException;
+
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+import com.examples.config.GlobalDataStore;
+import com.examples.pages.Guru99HomePage;
+import com.guru99.framework.Guru99WebDriverFactory;
+import com.guru99.framework.Guru99WebDriverImpl;
+
+public class Test99GuruHomePage {
+
+	Guru99WebDriverImpl driver;
+	GlobalDataStore gds = new GlobalDataStore();
+	String BankHomePage;
+	String Username;
+	String Psswd;
+	String GecKoDriver;
+
+	String HomePage;
+	Boolean HomePageLaunch = false;
+	Guru99HomePage objHomePage;
+
+	@Parameters({ "BrowserName" })
+	@BeforeClass
+	public void setUp(@Optional("FireFox") String BrowserName) throws MalformedURLException {
+
+		gds.initParameters();
+		// calls the init Method in getWebDriverInstance and gets the WebDriverImpl
+		// Object driver..
+
+		driver = Guru99WebDriverFactory.getWebDriverInstance(BrowserName);
+		BankHomePage = GlobalDataStore.Guru99HomePage;
+		HomePageLaunch = driver.navigateTo(BankHomePage);
+		// objHomePage= new Guru99HomePage(driver);
+		// driver.get("http://demo.guru99.com/V4/");
+		objHomePage = new Guru99HomePage();
+		objHomePage.setWebDriver(driver);
+	}
+
+	@Test
+	public void test_Home_Page_DashBoard_UserName() {
+
+		if (HomePageLaunch == true) {
+			String loginPageTitle = objHomePage.getHomePageDashboardUserName();
+			System.out.println(" The login Title " + loginPageTitle);
+
+			Assert.assertTrue(loginPageTitle.toLowerCase().contains("guru99 bank"));
+		}
+
+		// Assert.assertTrue(objHomePage.getHomePageDashboardUserName().toLowerCase().contains("manger
+		// id : mgr123"));
+
+	}
+	@Test
+	public void test_StepsToGenerateAccess() {
+
+		if (HomePageLaunch == true) {
+			String loginPageTitle = objHomePage.getStepsToGenerateAccess();
+			System.out.println(" The login Title " + loginPageTitle);
+
+			Assert.assertTrue(loginPageTitle.contains("Steps To Generate Access"));
+		}
+
+		// Assert.assertTrue(objHomePage.getHomePageDashboardUserName().toLowerCase().contains("manger
+		// id : mgr123"));
+
+	}
+	
+	@Test
+	public void test_Link_Enabled() {
+
+		if (HomePageLaunch == true) {
+			
+			System.out.println(" The login Title " + objHomePage.getLink());
+
+			Assert.assertTrue(objHomePage.getLink());
+		}
+
+		// Assert.assertTrue(objHomePage.getHomePageDashboardUserName().toLowerCase().contains("manger
+		// id : mgr123"));
+
+	}
+	
+	@Test
+	public void test_Login_Button() {
+
+		if (HomePageLaunch == true) {
+			
+			System.out.println(" The login button is " + objHomePage.getLoginButton());
+
+			Assert.assertTrue(objHomePage.getLoginButton());
+		}
+
+		// Assert.assertTrue(objHomePage.getHomePageDashboardUserName().toLowerCase().contains("manger
+		// id : mgr123"));
+
+	}
+	
+	@Test
+	public void test_Reset_Button() {
+
+		if (HomePageLaunch == true) {
+			
+			System.out.println(" The login button is " + objHomePage.getResetButton());
+
+			Assert.assertTrue(objHomePage.getResetButton());
+		}
+
+		// Assert.assertTrue(objHomePage.getHomePageDashboardUserName().toLowerCase().contains("manger
+		// id : mgr123"));
+
+	}
+	
+	//getLink()
+}

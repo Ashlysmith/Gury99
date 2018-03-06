@@ -1,1 +1,22 @@
 
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<suite name="Group of group Suite" verbose="1">
+  
+    
+  <parameter name="BrowserName"  value="firefox"/>
+  <test name="SimpleParamExample">
+      <classes>
+     <!--   <class name="com.Facebook.Tests.TestHomePage" /> -->
+      <!--  <class name ="com.Facebook.Tests.TestLocators"/> -->
+      <class name ="com.Gury99.tests.TestHomePageGury99">
+           <methods>
+               <include name ="test_getUserID"/>
+              <!--   <include name ="test_Reset_Button"/>  -->
+           </methods>
+           </class>                                          
+    </classes>
+  </test>
+  
+</suite>
